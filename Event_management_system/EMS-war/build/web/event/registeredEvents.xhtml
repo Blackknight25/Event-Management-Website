@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/default3.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">
+        Registered
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="cId" value="#{customerManagedBean.username}" />
+            <f:event type="preRenderView"
+                     listener="#{customerManagedBean.loadSelectedCustomer}" />
+        </f:metadata>
+        <section class="content" style="background-image: url('https://shopee.sg/blog/wp-content/uploads/2023/02/upcoming-concerts-singapore.jpg'); background-size: cover; background-position: center;">
+            <h1 class="m-0 text-white text-center">My Registered Events</h1>
+            <h:form>
+                <div class="container-fluid d-flex justify-content-center" style="min-height: 100vh;">
+                    <div class="col-sm-12 text-center">
+                        <br></br>
+                        <!-- Loop through the list of organized events -->
+                        #{customerManagedBean.order(customerManagedBean.selectedCustomer.events)}
+                        <ui:repeat value="#{customerManagedBean.selectedCustomer.events}" var="event">
+                            <!-- Default box -->
+                            <div class="card collapsed-card card-maroon">
+                                <div class="card-header">
+                                    
+                                    <h3 class="card-title">Category: #{event.category}</h3>
+                                    <br></br>
+                                    <h3 class="card-title">Registered Event: #{event.title}</h3>
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                        </button>
+                                    </div><!-- comment -->
+                                    <br></br>
+                                    <p>Organiser: #{event.organizer.name}</p>
+                                    <p>Date: 
+                                        <h:outputText value="#{event.date}">
+                                            <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="GMT+08:00"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p>Location: #{event.location}</p>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-muted text-center">Event Timing: 
+                                        <h:outputText value="#{event.time}" >
+                                            <f:convertDateTime pattern="HH:mm" timeZone="Asia/Singapore"/>
+                                        </h:outputText>
+                                        <h:outputText value="-" >
+                                        </h:outputText>
+                                        <h:outputText value="#{event.endTime}" >
+                                            <f:convertDateTime pattern="HH:mm" timeZone="Asia/Singapore"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p>#{event.description}</p>
+
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger-#{event.id}">
+                                        Unregister
+                                    </button>
+                                    <div class="modal fade" id="modal-danger-#{event.id}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content bg-danger">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Confirmation</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Confirm unregister for event #{event.title}?</p>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">No</button>
+                                                    <h:commandButton type="button" class="btn btn-outline-light" value="Yes" action="#{customerManagedBean.unregisterEvent(event, customerManagedBean.selectedCustomer)}">
+                                                        <f:param name="id" value="#{event.id}"/>
+                                                    </h:commandButton>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                </div>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </div>
+            </h:form>
+            <!-- /.card -->
+        </section>
+    </ui:define>
+
+    <ui:define name="script">
+
+    </ui:define>
+
+</ui:composition>

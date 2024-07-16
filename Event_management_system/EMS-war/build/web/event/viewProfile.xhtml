@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/default3.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        View Profile
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="cId" value="#{customerManagedBean.username}" />
+            <f:event type="preRenderView"
+                     listener="#{customerManagedBean.loadSelectedCustomer}" />
+        </f:metadata>
+        <!-- Main content -->
+        <section class="content" style="background-image: url('https://shopee.sg/blog/wp-content/uploads/2023/02/upcoming-concerts-singapore.jpg'); background-size: cover; background-position: center;">
+            <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-md-8 ">
+                    <h1 class="m-0 text-white text-center">My Profile</h1>
+                    <br></br>
+                    <!-- Profile Image -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">About Me</h3>
+                        </div>
+                        <div class="card-body box-profile">
+                            <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle"
+                                     src="#{request.contextPath}/upload/#{customerManagedBean.filename}"
+                                     alt="User profile picture"/>
+                            </div>
+
+                            <h3 class="profile-username text-center">#{customerManagedBean.selectedCustomer.name}</h3>
+
+                            <p class="text-muted text-center">#{customerManagedBean.selectedCustomer.email}</p>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                    <b>Contact</b> <a class="float-right">#{customerManagedBean.selectedCustomer.contact}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Registered Events</b> <a class="float-right">#{customerManagedBean.selectedCustomer.events.size()}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Organised Events</b> <a class="float-right">#{customerManagedBean.selectedCustomer.organisedEvents.size()}</a>
+                                </li>
+                            </ul>
+
+                            <a href="#{request.contextPath}/event/editProfile.xhtml" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </ui:define>
+
+</ui:composition>

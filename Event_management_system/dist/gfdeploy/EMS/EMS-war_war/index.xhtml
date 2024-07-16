@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./layout/default2.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        Welcome to Simple CRM
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="container-fluid">
+                    <div class="col-sm-12 text-center">
+                        <h1 class="m-0 text-white" style="white-space: nowrap;">Welcome to the Event Management System.</h1>
+                        <h3 class="m-0 text-white" style="white-space: nowrap;">Join us to organise and host an event, or register for one!</h3>
+                        <h:form>
+                            <h:commandButton type="submit" value="Login" action="login.xhtml?faces-redirect=true" class="btn btn-primary mr-2" />
+                            <h:commandButton type="submit" value="Sign up" action="createCustomer.xhtml?faces-redirect=true" class="btn btn-primary" />
+                        </h:form>
+                    </div>
+                    <br></br><br></br><br></br><br></br>
+
+                    <h1 class="m-0 text-white col-sm-12 text-center" style="white-space: nowrap;">Popular Events of 2023</h1>
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-indigo" style="height: 100px;">
+                                <div class="inner">
+                                    <h4>5 Seconds of Summer</h4>
+                                    <p>Pop rock concert by Popular Australian boy band</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-lightblue" style="height: 100px;">
+                                <div class="inner">
+                                    <h4>Race Against Cancer</h4>
+                                    <p>Yearly wholesome fund-raising running event</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-success" style="height: 100px;">
+                                <div class="inner">
+                                    <h4>Bukit Timah Hill Hiking</h4>
+                                    <p>Bi-Yearly hiking event for climbing enthusiasts</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-gradient-fuchsia" style="height: 100px;">
+                                <div class="inner">
+                                    <h4>Arts Festival Night</h4>
+                                    <p>Jointly hosted by Singapore Art Gallery and NYC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/default3.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Search
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- Main content -->
+        <section class="content" style="background-image: url('https://shopee.sg/blog/wp-content/uploads/2023/02/upcoming-concerts-singapore.jpg'); background-size: cover; background-position: center;">
+            <h1 class="text-white text-center">Search Events</h1>
+            <h:form id="form">
+                <div class="container-fluid" style="min-height: 100vh;">
+                    <h:selectOneMenu id="field" value="#{customerManagedBean.selectedField}">
+                        <f:ajax listener="#{customerManagedBean.searchEvents()}" render="form" />
+                        <f:selectItem itemValue="null" itemLabel="select a field" />
+                        <f:selectItem itemValue="CATEGORY" itemLabel="category" />
+                        <f:selectItem itemValue="TITLE" itemLabel="title" />
+                        <f:selectItem itemValue="DATE" itemLabel="date (dd-MM-yyyy)" />
+                        <f:selectItem itemValue="LOCATION" itemLabel="location" />
+                    </h:selectOneMenu>
+
+                    <br></br>
+                    <span class="fa fa-search" style="color: white;" ></span>
+                    <h:inputText value="#{customerManagedBean.searchValue}" id="searchInput" style="width: 300px;">
+                        
+                    </h:inputText>
+                    
+                    <h:commandButton value="Search" action="#{customerManagedBean.searchEvents()}">
+                        <f:ajax execute="@form" render="form" />
+                    </h:commandButton>
+                    
+                    <br></br><br></br>
+                    <div id="results">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Search Results</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0" >
+                                <table class="table table-head-fixed text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Title</th>
+                                            <th>Date</th>
+                                            <th>Organiser</th>
+                                            <th>Location</th>
+                                            <th>Available Slots</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{customerManagedBean.searchResults}" var="event">
+                                            <tr>
+
+                                                <td>#{event.category}</td>
+                                                <td>#{event.title}</td>
+                                                <td><h:outputText value="#{event.date}">
+                                                        <f:convertDateTime type="date" pattern="dd/MM/yyyy" timeZone="GMT+08:00"/>
+                                                    </h:outputText>
+                                                </td>
+                                                <td>#{event.organizer.name}</td>
+                                                <td>#{event.location}</td>
+                                                <td>#{event.capacity-event.participants.size()}</td>
+                                                <td class="project-actions">
+                                                    <h:commandButton type="submit" value="View/Register" action="/event/viewRegisteredEvent.xhtml?faces-redirect=true" actionListener="#{eventManagedBean.viewEventDetails(event.id)}" class="btn btn-info mr-2" />
+                                                </td>
+
+                                            </tr>
+                                        </ui:repeat>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                </div>
+            </h:form>
+        </section>
+    </ui:define>
+
+    <ui:define name="script">
+        <script>
+            function handleKeyUp() {
+                // Trigger AJAX request to update search results
+                document.getElementById('form:searchInput').dispatchEvent(new Event('change'));
+            }
+        </script>
+    </ui:define>
+
+</ui:composition>

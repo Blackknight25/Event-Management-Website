@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/default3.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:define name="title">
+        Add Event
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="cId" value="#{customerManagedBean.username}" />
+            <f:event type="preRenderView"
+                     listener="#{customerManagedBean.loadSelectedCustomer}" />
+        </f:metadata>
+        <section class="content" style="background-image: url('https://shopee.sg/blog/wp-content/uploads/2023/02/upcoming-concerts-singapore.jpg'); background-size: cover; background-position: center;">
+            <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-sm-8 text-center">
+                    <h1 class="m-0 text-white">Add Event</h1>
+                    <br></br>
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Fill in the details of your event</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <h:form>
+
+                                <h:messages globalOnly="true" style="padding: 10px; background-color: #f8d7da; color: #721c24; border-radius: 5px; border: 1px solid #f5c6cb; margin-bottom: 10px;" />
+
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="category">Category</h:outputLabel>
+                                            <br></br>
+                                            <h:selectOneMenu id="field" value="#{customerManagedBean.category}">
+                                                <f:selectItem itemValue="Sports" itemLabel="Sports" />
+                                                <f:selectItem itemValue="Performance" itemLabel="Performance" />
+                                                <f:selectItem itemValue="Arts" itemLabel="Arts" />
+                                                <f:selectItem itemValue="Leisure" itemLabel="Leisure" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <!-- text input -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="title">Title</h:outputLabel>
+                                            <h:inputText id="title" value="#{customerManagedBean.title}" required="true" requiredMessage="Title is required" class="form-control" />
+                                            <h:message for="title" styleClass="error-message" style="color: red;" />
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="location">Location</h:outputLabel>
+                                            <h:inputText id="location" value="#{customerManagedBean.location}" required="true" requiredMessage="Location is required" class="form-control" />
+                                            <h:message for="location" styleClass="error-message" style="color: red;" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- textarea -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="capacity">Capacity</h:outputLabel>
+                                            <h:inputText id="capacity" value="#{customerManagedBean.capacity}" required="true" requiredMessage="Capacity is required" class="form-control" />
+                                            <h:message for="capacity" styleClass="error-message" style="color: red;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- textarea -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="description">Description</h:outputLabel>
+                                            <h:inputTextarea id="description" value="#{customerManagedBean.description}" rows="2" required="true" requiredMessage="Description is required" class="form-control" />
+                                            <h:message for="description" styleClass="error-message" style="color: red;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="inputDate">Date of Event (dd/mm/yyyy)</h:outputLabel>
+                                            <div class="input-group date" id="datepicker" data-target-input="nearest">
+                                                <div class="input-group-prepend" data-target="#datepicker" data-toggle="datetimepicker">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <h:inputText id="inputDate"
+                                                             value="#{customerManagedBean.date}" required="true" requiredMessage="Date is required"
+                                                             converterMessage="Format should be dd/mm/yyyy" class="form-control datepicker " a:data-target="#datepicker" a:data-toggle="datetimepicker">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+08:00"/>
+                                                </h:inputText>
+                                                <h:message for="inputDate" class="invalid-feedback" styleClass="error-message" style="color: red;"/>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="inputDeadline">Registration Deadline (dd/mm/yyyy)</h:outputLabel>
+                                            <div class="input-group date" id="deadlinepicker" data-target-input="nearest">
+                                                <div class="input-group-prepend" data-target="#deadlinepicker" data-toggle="datetimepicker">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <h:inputText id="inputDeadline"
+                                                             value="#{customerManagedBean.deadline}" required="true" requiredMessage="Deadline is required"
+                                                             converterMessage="Format should be dd/mm/yyyy" class="form-control datepicker " a:data-target="#deadlinepicker" a:data-toggle="datetimepicker">
+                                                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+08:00"/>
+                                                </h:inputText>
+                                                <h:message for="inputDeadline" class="invalid-feedback" styleClass="error-message" style="color: red;"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="bootstrap-timepicker">
+                                            <div class="form-group">
+
+                                                <h:outputLabel for="startTime">Start Time</h:outputLabel>
+
+                                                <div class="input-group date" id="starttimepicker" data-target-input="nearest">
+                                                    <h:inputText id="startTime"
+                                                                 value="#{customerManagedBean.time}" required="true" requiredMessage=" Start Time is required"
+                                                                 converterMessage="Format should be HH:MM am/pm"
+                                                                 class="form-control timepicker "
+                                                                 a:data-target="#starttimepicker" a:data-toggle="datetimepicker">
+                                                        <f:convertDateTime pattern="hh:mm a" timeZone="Asia/Singapore"/>
+                                                    </h:inputText>
+                                                    <div class="input-group-append" data-target="#starttimepicker" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- /.input group -->
+                                            </div>
+                                            <!-- /.form group -->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="bootstrap-timepicker">
+                                            <div class="form-group">
+
+                                                <h:outputLabel for="endTime">End Time</h:outputLabel>
+
+                                                <div class="input-group date" id="endtimepicker" data-target-input="nearest">
+                                                    <h:inputText id="endTime"
+                                                                 value="#{customerManagedBean.endTime}" required="true" requiredMessage=" End Time is required"
+                                                                 converterMessage="Format should be HH:MM am/pm"
+                                                                 class="form-control timepicker "
+                                                                 a:data-target="#endtimepicker" a:data-toggle="datetimepicker">
+                                                        <f:convertDateTime pattern="hh:mm a" timeZone="Asia/Singapore"/>
+                                                    </h:inputText>
+                                                    <div class="input-group-append" data-target="#endtimepicker" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                                    </div>
+
+                                                    <!-- /.input group -->
+                                                </div>
+
+                                                <!-- /.form group -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <h:commandButton type="submit" value="Submit" action="#{customerManagedBean.addEvent()}" class="btn btn-primary" />
+
+                                    </div>
+                                </div>
+
+                            </h:form>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="script">
+        <script>
+            //Date picker
+            $('#datepicker').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+            $('#deadlinepicker').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+            $('#starttimepicker').datetimepicker({
+                format: 'hh:mm A'
+            });
+            $('#endtimepicker').datetimepicker({
+                format: 'hh:mm A'
+            });
+        </script>
+    </ui:define>
+
+</ui:composition>

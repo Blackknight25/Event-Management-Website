@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/default3.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        title
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewAction action="#{customerManagedBean.loadSelectedCustomer}" />
+            <f:viewAction action="#{eventManagedBean.loadSelectedEvent}" />
+        </f:metadata>
+        <section class="content" style="background-image: url('https://shopee.sg/blog/wp-content/uploads/2023/02/upcoming-concerts-singapore.jpg'); background-size: cover; background-position: center;">
+            <h1 class="m-0 text-white text-center">Mark Attendance</h1>
+            <h:form id="form">
+                <div class="container-fluid d-flex justify-content-center" style="min-height: 100vh;">
+                    <div class="card card-primary card-tabs" style="height: 100%; width: 700px;">
+                        <div class="card-header p-0 pt-1">
+                            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="custom-tabs-one-all-tab" data-toggle="pill" href="#custom-tabs-one-all" role="tab" aria-controls="custom-tabs-one-all" aria-selected="true">All</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-present-tab" data-toggle="pill" href="#custom-tabs-one-present" role="tab" aria-controls="custom-tabs-one-present" aria-selected="false">Present</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-one-absent-tab" data-toggle="pill" href="#custom-tabs-one-absent" role="tab" aria-controls="custom-tabs-one-absent" aria-selected="false">Absent</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="custom-tabs-one-tabContent">
+                                <div class="tab-pane fade show active" id="custom-tabs-one-all" role="tabpanel" aria-labelledby="custom-tabs-one-all-tab">
+
+                                    <div class="col-12">
+                                        <div class="card ">
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Contact</th>
+                                                            <th>Email</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat value="#{eventManagedBean.currentEvent.participants}" var="part">
+                                                            <tr>
+                                                                <td>#{part.name}</td>
+                                                                <td>#{part.contact}</td>
+                                                                <td>#{part.email}</td>
+                                                                <td><h:outputText value="#{part.present ? 'present' : 'absent'}" /></td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </div><!-- comment -->
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-one-present" role="tabpanel" aria-labelledby="custom-tabs-one-present-tab">
+                                    <div class="col-12">
+                                        <div class="card ">
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Contact</th>
+                                                            <th>Email</th>
+                                                            <th>Mark Absent</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <ui:repeat value="#{eventManagedBean.currentEvent.presentCustomers}" var="part">
+                                                            <tr>
+
+                                                                <td>#{part.name}</td>
+                                                                <td>#{part.contact}</td>
+                                                                <td>#{part.email}</td>
+                                                                <td><h:selectBooleanCheckbox value="#{part.absent}" /></td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                                <h:commandButton value="Submit" action="#{eventManagedBean.markAbsent(eventManagedBean.currentEvent.id, eventManagedBean.currentEvent.presentCustomers)}">
+                                                   <f:ajax execute="@form" render="form" />
+                                                </h:commandButton>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </div>                            
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-one-absent" role="tabpanel" aria-labelledby="custom-tabs-one-absent-tab">
+                                    <div class="col-12">
+                                        <div class="card ">
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Contact</th>
+                                                            <th>Email</th>
+                                                            <th>Mark Present</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat value="#{eventManagedBean.currentEvent.absentCustomers}" var="part">
+                                                            <tr>
+                                                                <td>#{part.name}</td>
+                                                                <td>#{part.contact}</td>
+                                                                <td>#{part.email}</td>
+                                                                <td><h:selectBooleanCheckbox value="#{part.present}" /></td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                                <h:commandButton value="Submit" action="#{eventManagedBean.markPresent(eventManagedBean.currentEvent.id, eventManagedBean.currentEvent.absentCustomers)}">
+                                                    <f:ajax execute="@form" render="form" />
+                                                </h:commandButton>
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </div>                            
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </h:form>
+        </section>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/listEvents.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/editProfile.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/src/java/managedBean/CustomerManagedBean.java</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/addEvent.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/createCustomer.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/secret/addEvent.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/searchEvents.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/secret/registerEvent.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/markAttendance.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/login.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/addPhoto.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/registeredEvents.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/index.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/secret/registeredEvents.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/src/java/managedBean/EventManagedBean.java</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/secret/markAttendance.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/viewProfile.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/secret/editProfile.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/event/viewRegisteredEvent.xhtml</file>
+            <file>file:/Users/choijiwon/assignmenttwo/EMS/EMS-war/web/secret/searchEvents.xhtml</file>
+        </group>
+    </open-files>
+</project-private>

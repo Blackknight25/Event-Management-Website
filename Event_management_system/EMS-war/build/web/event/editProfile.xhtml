@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/default3.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Edit Profile
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="cId" value="#{customerManagedBean.username}" />
+            <f:event type="preRenderView"
+                     listener="#{customerManagedBean.loadSelectedCustomer}" />
+        </f:metadata>
+        <section class="content" style="background-image: url('https://shopee.sg/blog/wp-content/uploads/2023/02/upcoming-concerts-singapore.jpg'); background-size: cover; background-position: center;">
+            <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-sm-8 text-center">
+                    <h1 class="m-0 text-white">Edit Profile</h1>
+                    <br></br>
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit selected aspects of your profile</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <h:form>
+                                <h:messages globalOnly="true" style="padding: 10px; background-color: #f8d7da; color: #721c24; border-radius: 5px; border: 1px solid #f5c6cb; margin-bottom: 10px;" />
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="name">Name</h:outputLabel>
+                                            <h:inputText id="name" value="#{customerManagedBean.name}" required="true" requiredMessage="Name is required" class="form-control" />
+                                             <h:message for="name" styleClass="error-message" style="color: red;" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="contact">Contact</h:outputLabel>
+                                            <h:inputText id="contact" value="#{customerManagedBean.contact}" required="true" requiredMessage="Contact is required" class="form-control" />
+                                             <h:message for="contact" styleClass="error-message" style="color: red;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="container-fluid d-flex align-items-center justify-content-center">
+                                        <!-- text input -->
+
+                                        <div class="col-sm-6">
+                                            <h:outputLabel for="password">Password</h:outputLabel>
+                                            <br></br>
+                                            <h:inputSecret id="password" value="#{customerManagedBean.password}" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br></br>
+                                <div class="row">
+                                    <div class="container-fluid d-flex align-items-center justify-content-center">
+
+                                        <div class="col-sm-6">
+                                            <h:commandButton type="submit" value="Submit" action="#{customerManagedBean.editCustomer()}" class="btn btn-primary mr-2" />
+                                            <h:commandButton type="submit" value="Change Profile Picture" action="/event/addPhoto.xhtml?faces-redirect=true" class="btn btn-primary" />
+
+                                        </div>
+                                    </div><!-- comment -->
+                                </div>
+                            </h:form><!-- comment -->
+                        </div><!-- comment -->
+                    </div>
+                </div><!-- comment -->
+            </div>
+        </section>
+
+    </ui:define>
+
+</ui:composition>
