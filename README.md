@@ -1,7 +1,6 @@
 # Event Management System (EMS)
 
-**Name**: CHOI JI WON  
-**Student No.**: A0259010R
+**Name**: CHOI JI WON MELANIE
 
 ## Instructions
 
